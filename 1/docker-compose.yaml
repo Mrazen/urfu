@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  api-back:
+    build: ./nodejs
+    ports:
+      - "3208:3208"
+  nginx-front:
+    build: ./nginx
+    ports:
+      - "80:80"
