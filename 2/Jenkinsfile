@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                git 'git@github.com:User/urfu.git'
+            }
+        stage('Deploy') {
+            steps{
+                sh 'scp -r dist user@server1:/var/www/deploy/dist/'
+                }
+            }
+        }

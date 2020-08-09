@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+    php:
+        ports:
+          - "9000:9000"
+        build:
+        #Здесь, дополнительно, через Dockerfile добавляем необходимые модули
+          ./php
+        volumes:
+          - ./php/src:/var/www/html
+          - ./php/php.ini:/usr/local/etc/php/php.ini
+        depends_on:
+          - mariadb
+
+    mariadb:
+        image: mariadb:10.5.1
+        volumes:
+          - ./mariadb:/var/lib/mysql  
+        #Добавляем файл конфигурации сервера
+          - ./mariadb/custom:/etc/mysql/conf.d
+        environment:
+        MYSQL_ROOT_PASSWORD: password
