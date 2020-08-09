@@ -64,6 +64,7 @@ sudo apt-get install openjdk-8-jdk
 8.В данном случае лучше разворачивать приложение непосредственно в Docker, т.к. .net не ялвется родной платформой Linux, а сервера Windows обычно не годятся для высоконагруженных систем. В Visual Studio существует поддержка Docker для проектов C#, dockerfile формируется под конкретный проект.
 
 #Пример
+```
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
 WORKDIR /app
 
@@ -80,7 +81,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
-
+```
 9.Самая простая конфигурация балансировщика. По умолчанию используется метод round-robin, нагрузка распределяется равномерно между серверами. Так же можно менять распределение нагрузки изменяя веса серверов или метод балансировки.
 
 ```
@@ -102,7 +103,7 @@ http {
     }
 }
 ```
-10.В Debian 10 исопльзуется cron, обычно присутствует в дистрибутиве. 
+10.В Debian 10 используется cron, обычно присутствует в дистрибутиве. 
 ```
 0 5,17 * * * /scripts/script.sh
 ```
