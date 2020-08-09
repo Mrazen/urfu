@@ -2,11 +2,9 @@
 
 for test
 
-1. На server2 добавляем vhost с проксированием к server1
-На server1 запускаем backend приложение, пример привёл в папке node.js
+1. На server2 добавляем vhost с проксированием к server1.На server1 запускаем backend приложение, пример привёл в папке node.js
 
 $ node app.js
-
 Запускаем nginx на server1 для работы со статикой.
 Запросы поступающие на прокси-сервер, с указанием определённого доменного имени, будут перенаправляться
 на server1 по соотвествующим URI.
@@ -25,7 +23,7 @@ BACKUP DATABASE database.
    TO DISK = '\\server2\rk\database.bak';  
 GO
 
-# Проверяем на наличие ошибок при передаче через сеть
+#Проверяем на наличие ошибок при передаче через сеть
    RESTORE VERIFYONLY FROM DISK = '\\server2\rk\database.bak';
 GO  
 
@@ -40,7 +38,7 @@ rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 dnf module enable php:remi-7.3 -y
 dnf install -y php php-cli php-common
-# Поддержка MySQL в php
+#Поддержка MySQL в php
 dnf install -y php-mysqlnd
 
 Альтернативный способ разворачивания приложения через Docker. Примеры конфигураций привёл в GitHub.
@@ -48,9 +46,9 @@ dnf install -y php-mysqlnd
 6. Нужно создать точку монтирования с использованием протокола CIFS
 apt-get install cifs-utils
 
-# Монтируем
+#Монтируем
 mount.cifs //RK/db /mnt -o user=mysql_bkp, pass=mypass
-# Используем утилиту mysqldump
+#Используем утилиту mysqldump
 mysqldump -h localhost -u root -p mydb > /mnt/mydb.sql
 
 7. 
